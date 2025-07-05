@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculation Array</title>
+    <style>
+       body { 
+        font-family: Arial;
+        background: #f0f8ff; 
+        padding: 20px;
+     }
+    input, button { 
+        margin: 5px; 
+        padding: 10px; 
+    }
+    #output, #arrayDisplay {
+        font-size: 18px; 
+        margin-top: 10px; 
+        color: #2c3e50; 
+    }
+    </style>
+</head>
+<body>
+    <h1 class="text-align-center"> BASIC CALCULATION OF ARRAY </h1>
+
+    <label> Enter Array: </label>
+    <input type="text" id="arrayInput" >
+    <button onclick="setarray()">Set Array</button>
+
+
+    
+  <label>🔹 Enter single value:</label><br>
+  <input type="number" id="singleValue">
+
+  <p><strong>Current Array:</strong> <span id="arrayDisplay"></span></p>
+
+  <div>
+    <button onclick="pushItem()">Push</button>
+    <button onclick="popItem()">Pop</button>
+    <button onclick="shiftItem()">Shift</button>
+    <button onclick="unshiftItem()">Unshift</button>
+    <button onclick="spliceItem()">Splice at index 1</button>
+  </div>
+
+  <div>
+    <button onclick="mapDouble()">Map (x2)</button>
+    <button onclick="filterEven()">Filter Even</button>
+    <button onclick="checkIncludes()">Includes 3?</button>
+    <button onclick="findIndex4()">FindIndex > 4</button>
+    <button onclick="everyPositive()">Every > 0?</button>
+    <button onclick="someGreaterThan5()">Some > 5?</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script>
+    let arr = [];
+
+    function setArray() {
+      let input = document.getElementById("arrayInput").value;
+      arr = input.split(",").map(Number); // Convert to number array
+      updateDisplay();
+      showOutput("Array set: " + arr);
+    }
+
+    function getInputValue() {
+      return Number(document.getElementById("singleValue").value);
+    }
+
+    function updateDisplay() {
+      document.getElementById("arrayDisplay").innerText = "[" + arr.join(", ") + "]";
+    }
+
+    function showOutput(msg) {
+      document.getElementById("output").innerText = msg;
+    }
+
+    function pushItem() {
+      let val = getInputValue();
+      arr.push(val);
+      updateDisplay();
+    }
+
+    function popItem() {
+      arr.pop();
+      updateDisplay();
+    }
+
+    function shiftItem() {
+      arr.shift();
+      updateDisplay();
+    }
+
+    function unshiftItem() {
+      let val = getInputValue();
+      arr.unshift(val);
+      updateDisplay();
+    }
+
+    function spliceItem() {
+      arr.splice(1, 1); // remove 1 item from index 1
+      updateDisplay();
+    }
+
+    function mapDouble() {
+      let result = arr.map(x => x * 2);
+      showOutput("Doubled: " + result);
+    }
+
+    function filterEven() {
+      let result = arr.filter(x => x % 2 === 0);
+      showOutput("Even Numbers: " + result);
+    }
+
+    function checkIncludes() {
+      let result = arr.includes(3);
+      showOutput("Includes 3? " + result);
+    }
+
+    function findIndex4() {
+      let result = arr.findIndex(x => x > 4);
+      showOutput("First index > 4: " + result);
+    }
+
+    function everyPositive() {
+      let result = arr.every(x => x > 0);
+      showOutput("Every item > 0? " + result);
+    }
+
+    function someGreaterThan5() {
+      let result = arr.some(x => x > 5);
+      showOutput("Any item > 5? " + result);
+    }
+  </script>
+</body>
+</html>
